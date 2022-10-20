@@ -19,18 +19,32 @@ app.listen(3000)
 app.get("/", (request, response) => {
 	let queue = 'FILA_CADASTRO_USUARIO';
 
-    let open = amqp.connect('amqp://localhost:5672');
+	amqp.connect('amqp://ifpb:ifpb@localhost:5672', function(error0, connection) {
+		if (error0) {
+			throw error0;
+		}
+		connection.createChannel(function(error1, channel) {
+			if (error1) {
+				throw error1;
+			}
+			var exchange = 'CADASTRO';
+			var msg = 'Hello World!';
+	
+			// channel.assertExchange(exchange, 'direct', {
+			// 	durable: false
+			// });
+			channel.assertQueue(queue); // asserts the queue exists
+			channel.sendToQueue(queue, Buffer.from('something to do')); // sends a message to the queue
 
-	// Publisher
-	open.then(function(connection) {
-		return connection.createChannel();
-	})
-	.then(function(channel) {
-		//channel.assertExchange('CADASTRO', 'direct', { durable: true });
-		return channel.assertQueue(queue).then(function(ok) {
-				return channel.sendToQueue(queue, Buffer.from(JSON.stringify(request.body)));
+			// channel.publish(exchange, '', Buffer.from(msg));
+			console.log(" [x] Sent %s", msg);
 		});
-	}).catch(console.warn);
+	
+		// setTimeout(function() {
+		// 	connection.close();
+		// 	process.exit(0);
+		// }, 500);
+	});
 	
 
 	response.json({message: "Sucesso"})
