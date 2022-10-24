@@ -1,7 +1,8 @@
 const express = require('express');
+const app = express()
+
 const amqp = require('amqplib/callback_api');
 
-const app = express()
 
 //forma de ler json
 app.use(
@@ -30,7 +31,7 @@ app.get("/", (request, response) => {
             channel.assertQueue(queueName, {
                     durable:false
             });
-            channel.sendToQueue(queueName, Buffer.from(request.body));
+            channel.sendToQueue(queueName, Buffer.from(JSON.stringify(request.body)));
             console.log(`Message : ${message}`);
             // setTimeout(()=>{
             //     connection.close();
