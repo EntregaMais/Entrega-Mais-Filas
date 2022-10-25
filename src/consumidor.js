@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const amqp = require('amqplib/callback_api');
-amqp.connect(`amqp://ifpb:ifpb@localhost:5672`, (err, connection) => {
+amqp.connect(`amqp://ifpb:ifpb@localhost:5677`, (err, connection) => {
     if(err){
         throw err;
     }
@@ -22,8 +22,6 @@ amqp.connect(`amqp://ifpb:ifpb@localhost:5672`, (err, connection) => {
 				}})
 			.then(res => {
 				const outcome = (res.data.status) ? "Erro" : "Sucesso";
-				console.log(outcome)
-				console.log(res.data);
 			})
 			.catch((error) => {
 				console.log(error);
