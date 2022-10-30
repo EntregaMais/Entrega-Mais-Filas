@@ -1,4 +1,4 @@
-# Entrega-Mais-Filas-Bide
+# Entrega-Mais-Filas
 
 > Repositório contendo consumidor e produtor usados para enviar e receber mensagens do RabbitMQ
 
@@ -96,4 +96,4 @@ sequenceDiagram
 	Backend ->>- Backend: Executa
 ```
 ---
-[⬆ Voltar ao topo](#Entrega-Mais-Filas-Node)
+[⬆ Voltar ao topo](#Entrega-Mais-Filas)
