@@ -1,29 +1,17 @@
 {
-  "name": "rabbitmq-node",
+  "name": "entrega-mais-filas-node",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "p": "nodemon ./src/produtor.js localhost 3000",
-    "c": "nodemon ./src/consumidor.js localhost 3001"
+	"start": "pm2 --no-daemon start ecosystem.config.js",
+	"install:dev":"npm install pm2 -g"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EntregaMais/RabbitMQ-Node.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/EntregaMais/RabbitMQ-Node/issues"
-  },
-  "homepage": "https://github.com/EntregaMais/RabbitMQ-Node#readme",
   "dependencies": {
     "amqplib": "^0.10.3",
     "axios": "^1.1.3",
     "body-parser": "^1.20.1",
     "express": "^4.18.2",
-    "nodemon": "^2.0.20"
+    "pm2": "^5.2.2"
   }
 }

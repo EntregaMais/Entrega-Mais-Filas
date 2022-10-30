@@ -1,7 +1,9 @@
+const amqp = require('amqplib/callback_api');
 const axios = require("axios");
 
-const amqp = require('amqplib/callback_api');
-amqp.connect(`amqp://ifpb:ifpb@localhost:5677`, (err, connection) => {
+
+console.log("Consumidor Online")
+amqp.connect(`amqp://ifpb:ifpb@host.docker.internal:5672`, (err, connection) => {
     if(err){
         throw err;
     }
@@ -16,7 +18,7 @@ amqp.connect(`amqp://ifpb:ifpb@localhost:5677`, (err, connection) => {
         });
         channel.consume(queueName, (msg) => {
 			console.log(msg.content.toString());
-			axios.post('http://localhost:8080/api/usuario/salvar', msg.content.toString(), {
+			axios.post('http://host.docker.internal:8080/api/usuario/salvar', msg.content.toString(), {
 				headers: {
 					'Content-Type': 'application/json'
 				}})

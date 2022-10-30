@@ -1,0 +1,9 @@
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Project files
+docs
+.vscode
+README.md
+node_modules
