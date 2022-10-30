@@ -4,6 +4,7 @@
 
 ## Pré-requisitos
 ---
+
 É necessário a instalação dos seguintes recursos:
 
 - [Docker](https://docs.docker.com/get-docker/) e [WSL 2](https://docs.microsoft.com/en-us/windows/wsl/install)
@@ -29,10 +30,10 @@ docker compose up
 	- user: **`ifpb`**
 	- password: **`ifpb`** -->
 
----
+
 
 ## Iniciando Localmente
-
+---
 Na raiz do projeto execute o seguinte comando instale as dependencias para desenvolvimento:
 > Esse comando instala o gerenciador de processos [**pm2**](https://www.npmjs.com/package/pm2) globalmente.
 
@@ -52,7 +53,7 @@ npm start
 
 
 ## Usando Entrega-Mais-Filas-Node
-### 
+--- 
 Agora basta enviar requisições com o método **`POST`** para a porta **`3000`**:
 ```
 http://localhost:3000/
@@ -67,6 +68,7 @@ Com o corpo da requisição contendo um JSON neste formato:
 
 
 ## Diagrama Sequencial
+---
 ```mermaid
 sequenceDiagram
     participant Frontend
@@ -93,5 +95,5 @@ sequenceDiagram
 	Note left of Backend: Método POST <br> Corpo em formato JSON
 	Backend ->>- Backend: Executa
 ```
-
+---
 [⬆ Voltar ao topo](#Entrega-Mais-Filas-Node)
