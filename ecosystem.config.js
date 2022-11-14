@@ -7,6 +7,5 @@ module.exports = {
 	  name   : "produtor",
 	  script : "./src/produtor.js",
 	  instances  : 1,
-
 	}]
   }
