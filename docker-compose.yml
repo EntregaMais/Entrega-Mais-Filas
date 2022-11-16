@@ -1,6 +1,7 @@
 version: '3.9'
 services:
   app:
+    container_name: filas_app_container
     build: .
     ports:
       - "7710:3000"
@@ -10,24 +11,28 @@ services:
     restart: on-failure
 
   rabbitmq:
-  container_name: rabbitmq_container
-  image: rabbitmq:3-management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
-  volumes:
-    - rabbitmq-data:/var/lib/rabbitmq
-    - rabbitmq-data-setup:/setup
-  tty: true
-  environment:
-    - RABBITMQ_DEFAULT_USER=ifpb
-    - RABBITMQ_DEFAULT_PASS=ifpb
-    - CLUSTERED=true
-    - RABBITMQ_ERLANG_COOKIE=default_key
-  networks:
-    - entregamaisnetwork
-  restart: unless-stopped
+    container_name: filas_rabbitmq_container
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+      - rabbitmq-data-setup:/setup
+    tty: true
+    environment:
+      - RABBITMQ_DEFAULT_USER=ifpb
+      - RABBITMQ_DEFAULT_PASS=ifpb
+      - CLUSTERED=true
+      - RABBITMQ_ERLANG_COOKIE=default_key
+    networks:
+      - entregamaisnetwork
+    restart: unless-stopped
 
 networks:
   entregamaisnetwork:
     name: entregamaisnetwork
+
+volumes:
+  rabbitmq-data:
+  rabbitmq-data-setup:
