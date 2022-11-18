@@ -3,6 +3,7 @@ services:
   app:
     container_name: filas_app_container
     build: .
+    command: './wait-for-it.sh filas_rabbitmq_container:15672 -s -- pm2-runtime ecosystem.config.js'
     ports:
       - "7710:3000"
       - "7711:3001"
