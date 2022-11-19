@@ -1,9 +1,14 @@
+// Env config
+const config =  require('../config');
+console.log(`NODE_ENV=${config.NODE_ENV}`);
+
+// amqplib
 const amqp = require('amqplib/callback_api');
 const axios = require("axios");
 
 
 console.log("Consumidor Online")
-amqp.connect(`amqp://ifpb:ifpb@host.docker.internal:5672`, (err, connection) => {
+amqp.connect(`amqp://ifpb:ifpb@`+config.HOST+`:`+config.PORT, (err, connection) => {
     if(err){
         throw err;
     }
@@ -18,7 +23,7 @@ amqp.connect(`amqp://ifpb:ifpb@host.docker.internal:5672`, (err, connection) => 
         });
         channel.consume(queueName, (msg) => {
 			console.log(msg.content.toString());
-			axios.post('http://host.docker.internal:8080/api/usuario/salvar', msg.content.toString(), {
+			axios.post('http://'+config.HOST+`:`+config.PORT+'/api/usuario/salvar', msg.content.toString(), {
 				headers: {
 					'Content-Type': 'application/json'
 				}})
