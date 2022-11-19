@@ -10,6 +10,15 @@
 - [Docker](https://docs.docker.com/get-docker/) e [WSL 2](https://docs.microsoft.com/en-us/windows/wsl/install)
 - [Node](https://nodejs.org/en/download/)
 
+Desative o git's automatic conversion e realise o checkout em outra branch, depois volte para a branch original:
+```
+git config --global core.autocrlf input
+
+git checkout <outra_branch>
+
+git checkout <branch_original>
+```
+
 ## Iniciando via Docker
 Na raiz do projeto, onde há o arquivo `docker-compose.yml`, execute o seguinte comando:
 ```
