@@ -11,15 +11,15 @@ var router = express();
 var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json())
-router.listen(3000) // Expor Porta
+router.listen(7710)
 
 
-console.log("Produtor Online")
-router.post('/', (request, response) => {
+console.log("Produtor Online na porta:", 7710)
+router.post('/api/usuario/salvar', (request, response) => {
     console.log('Recebendo Requisição ...');
     console.log('Corpo da Requisição: ', request.body);
-    //res.send(req.body);
-    amqp.connect(`amqp://ifpb:ifpb@`+config.HOST+`:`+config.PORT, (err, connection) => {
+	
+    amqp.connect(`amqp://ifpb:ifpb@`+config.HOST+`:`+config.PORT_RABBITMQ, (err, connection) => {
             if(err){
             throw err;
         }

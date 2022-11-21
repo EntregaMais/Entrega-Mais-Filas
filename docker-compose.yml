@@ -8,8 +8,8 @@ services:
       - NODE_ENV=docker.internal
       # - NODE_ENV=docker.network
     ports:
-      - "7710:3000"
-      - "7711:3001"
+      - "7710:7710"
+      - "7711:7711"
     networks:
       - entregamaisnetwork
     restart: on-failure

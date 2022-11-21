@@ -65,7 +65,7 @@ npm start
 --- 
 Agora basta enviar requisições com o método **`POST`** para a porta **`3000`**:
 ```
-http://localhost:3000/
+http://localhost:7710/
 ```
 Com o corpo da requisição contendo um JSON neste formato:
 ```
